@@ -1,0 +1,3 @@
+customtkinter
+screen-brightness-control
+Pillow
