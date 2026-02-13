@@ -6,11 +6,11 @@ import time
 import customtkinter as ctk
 import screen_brightness_control as sbc
 import os
-import sys  # WICHTIG: Für resource_path notwendig
+import sys  
 from PIL import Image
 
 # ==========================================================
-# HILFSFUNKTION FÜR PYINSTALLER
+# HELPER FOR PYINSTALLER
 # ==========================================================
 def resource_path(relative_path):
     """ Ermittelt den absoluten Pfad zu Ressourcen für PyInstaller """
@@ -247,7 +247,6 @@ class BrightnessApp(ctk.CTk):
                 pass
         
         # Geometry calc
-        # Etwas kompakter, da Header entfernt wurde
         base_height = 280 
         monitor_height = len(self.monitors) * 70
         self.geometry(f"420x{base_height + monitor_height}")
@@ -280,8 +279,6 @@ class BrightnessApp(ctk.CTk):
         return fallback_name
 
     def build_ui(self):
-        # Header (Logo/Titel) komplett entfernt für cleanen Look.
-        # Wir fügen oben nur etwas Platz ein ("Spacer").
         
         spacer = ctk.CTkFrame(self, fg_color="transparent", height=15)
         spacer.pack()
@@ -352,7 +349,7 @@ class BrightnessApp(ctk.CTk):
             from_=0, to=100, number_of_steps=100,
             height=18,
             progress_color=self.COLOR_SLIDER_NIGHT,
-            fg_color="#0F111A", # Very dark blue track
+            fg_color="#0F111A", 
             button_color=self.COLOR_KNOB,
             button_hover_color="#FFFFFF",
             command=self.update_strength
@@ -365,7 +362,7 @@ class BrightnessApp(ctk.CTk):
             night_frame, 
             text="Enable Night Mode", 
             font=("Segoe UI", 12, "bold"),
-            fg_color="#2A2F45",     # Inactive dark blue
+            fg_color="#2A2F45",     
             hover_color="#3A4160",
             text_color="#FFFFFF",
             height=35,
@@ -387,11 +384,11 @@ class BrightnessApp(ctk.CTk):
         self.night.toggle(strength)
         
         if self.night.enabled:
-            # Active State: Glowing Orange Button (matches slider)
+            # Active State: Glowing Orange Button 
             self.night_button.configure(
                 text="Night Mode Active", 
                 fg_color=self.COLOR_SLIDER_NIGHT, 
-                text_color="#000000", # Black text on bright orange
+                text_color="#000000", 
                 hover_color="#E59E35"
             )
             self.night.apply_gamma(strength) 
